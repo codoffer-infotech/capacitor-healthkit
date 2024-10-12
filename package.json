@@ -1,6 +1,6 @@
 {
-  "name": "@perfood/capacitor-healthkit",
-  "version": "2.0.0-alpha.2",
+  "name": "@codoffer/capacitor-healthkit",
+  "version": "1.0.0",
   "description": "Capacitor plugin to read data from and write data to Apple Health",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -11,14 +11,14 @@
     "ios/Plugin/",
     "PerfoodCapacitorHealthkit.podspec"
   ],
-  "author": "Manuel Heidrich",
+  "author": "Codoffer",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/perfood/capacitor-healthkit.git"
+    "url": "git+https://github.com/codoffer-infotech/capacitor-healthkit.git"
   },
   "bugs": {
-    "url": "https://github.com/perfood/capacitor-healthkit/issues"
+    "url": "https://github.com/codoffer-infotech/capacitor-healthkit/issues"
   },
   "keywords": [
     "capacitor",
