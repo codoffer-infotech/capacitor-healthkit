@@ -241,5 +241,6 @@ getWorkouts(options: WorkoutsQueryOptions) => Promise<WorkoutsQueryOutput>
 
 #### QuantityType
 
-<code>'stepCount' \| 'activeEnergyBurned' \| 'appleExerciseTime' \| 'basalEnergyBurned' \| 'distanceCycling' \| 'distanceWalkingRunning' \|  'weight'</code>
+<code>'stepCount' | 'activeEnergyBurned' | 'appleExerciseTime' | 'basalEnergyBurned' | 'bloodGlucose' | 'distanceCycling' | 'distanceWalkingRunning' | 'flightsClimbed' | 'heartRate' | 'weight'</code>
+
 </docgen-api>
