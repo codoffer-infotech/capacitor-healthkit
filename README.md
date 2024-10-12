@@ -1,12 +1,43 @@
-# @perfood/capacitor-healthkit v2
+# Capacitor HealthKit Plugin
 
-This is a complete re-write of the original plugin and still work in progress. v2 will have a complete new API and some new features. By far not everything has been implemented yet. You can test the most recent release of v2 by installing `@perfood/capacitor-healthkit@next`.
+:heart: Capacitor plugin to retrieve data from HealthKit :heart:
 
-## Install
+This is a clone of the `@perfood/capacitor-healthkit@next` with improvements. 
 
-```bash
-npm install @perfood/capacitor-healthkit@next
-npx cap sync
+Disclaimer : _for now only some of the HK data base, in the future the retrieve base will be bigger !_
+
+## Getting Started
+
+### Prerequisites
+
+* Add **HealthKit to your Xcode project** (section signing & capabilities)
+
+![alt text](https://i.ibb.co/Bg03ZKf/auth-hk.png)
+
+* ADD **Privacy - Health Share Usage Description** to your Xcode project
+* ADD **Privacy - Health Update Usage Description** to your Xcode project
+
+You can simply put this into the `info.plist` file
+
+```
+	<key>NSHealthShareUsageDescription</key>
+	<string>Read Health Data</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Read Health Data</string>
+```
+
+### Installing
+
+Do
+
+```
+npm i --save @codoffer/capacitor-healthkit
+```
+
+Then
+
+```
+npx cap update
 ```
 
 ## API
@@ -210,5 +241,5 @@ getWorkouts(options: WorkoutsQueryOptions) => Promise<WorkoutsQueryOutput>
 
 #### QuantityType
 
-<code>'stepCount' \| 'activeEnergyBurned' \| 'appleExerciseTime' \| 'basalEnergyBurned' \| 'bloodGlucose' \| 'distanceCycling' \| 'distanceWalkingRunning' \| 'flightsClimbed' \| 'heartRate' \| 'weight'</code>
+<code>'stepCount' \| 'activeEnergyBurned' \| 'appleExerciseTime' \| 'basalEnergyBurned' \| 'distanceCycling' \| 'distanceWalkingRunning' \|  'weight'</code>
 </docgen-api>
