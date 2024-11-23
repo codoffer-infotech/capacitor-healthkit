@@ -94,9 +94,11 @@ public class CapacitorHealthkitPlugin: CAPPlugin {
                         
         let intervalComponents = getInterval(interval.unit, interval.value)
 
-        let anchorDate = getDateFromString(inputDate: anchorDateInput)
+        var anchorDate = getDateFromString(inputDate: anchorDateInput)
                 
         let quantityType = getQuantityType(sampleName: sampleName)
+
+        anchorDate = self.convertDateIntoUTC(date:anchorDate, wantToConvertIntoStartOfDay: true)
         
         // Create the query.
         let query = HKStatisticsCollectionQuery(quantityType: quantityType,
@@ -127,8 +129,12 @@ public class CapacitorHealthkitPlugin: CAPPlugin {
                 return call.reject("An unexpected error occurred")
             }
 
-            let endDate = endDateInput != nil ? getDateFromString(inputDate: endDateInput!) : Date()
-            let startDate = getDateFromString(inputDate: startDateInput)
+            var endDate = endDateInput != nil ? getDateFromString(inputDate: endDateInput!) : Date()
+            var startDate = getDateFromString(inputDate: startDateInput)
+
+            startDate = self.convertDateIntoUTC(date:startDate, wantToConvertIntoStartOfDay: true)
+            endDate = self.convertDateIntoUTC(date:startDate, wantToConvertIntoStartOfDay: false)
+
             
             var output: [[String: Any]] = []
                                     
@@ -347,5 +353,39 @@ public class CapacitorHealthkitPlugin: CAPPlugin {
         }
         
         healthStore.execute(workoutQuery)
+    }
+
+      func convertDateIntoUTC(date: Date, wantToConvertIntoStartOfDay: Bool) -> Date {
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+
+
+        let dateString = dateFormatter.string(from: date)
+        let components = dateString.split(separator: "-")
+        var startDate = Date()
+        var endDate = Date()
+
+        if components.count == 3 {
+
+            if let year = Int(components[0]),
+
+              let month = Int(components[1]),
+
+              let day = Int(components[2]) {
+
+                let calendar = Calendar.current
+
+                let specificDate = calendar.date(from: DateComponents(year: year, month: month, day: day))!
+
+                startDate = calendar.startOfDay(for: specificDate)
+
+                endDate = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: startDate)!
+            }
+
+        }
+
+        return wantToConvertIntoStartOfDay ? startDate : endDate
+
     }
 }
